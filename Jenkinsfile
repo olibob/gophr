@@ -24,5 +24,6 @@ node {
   stage('Deploy') {
     if (currentBuild.result == 'SUCCESS') {
       echo 'Deployed'
+    }
   }
 }
