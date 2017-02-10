@@ -1,8 +1,11 @@
 #!groovy
 
 node {
+  stage('checkout'){
+    git branch: 'dev', url: 'https://github.com/olibob/gophr.git'
+  }
+  
   stage('Build') {
-    deleteDir()
     sh 'docker run --rm -v "$PWD":/usr/src/gophr -w /usr/src/gophr builder  go build -v'
   }
 
