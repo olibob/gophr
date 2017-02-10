@@ -1,6 +1,10 @@
 #!groovy
 
 node {
+  environment {
+    SLACKTOKEN = credentials('slackToken')
+  }
+
   stage('checkout'){
     git branch: 'dev', url: 'https://github.com/olibob/gophr.git'
   }
@@ -13,7 +17,7 @@ node {
     try {
       sh 'docker run --rm -v "$PWD":/usr/src/gophr -w /usr/src/gophr builder sh -c "go test -v | go2xunit -fail" > testOutput.xml'
     } catch(err) {
-      slackSend channel: '#jenkins', message: 'bla', token: "${slackToken}"
+      slackSend channel: '#jenkins', message: 'bla', token: "${SLACKTOKEN}"
       throw err
     }
     finally {
