@@ -4,7 +4,7 @@ node {
   stage('checkout'){
     git branch: 'dev', url: 'https://github.com/olibob/gophr.git'
   }
-  
+
   stage('Build') {
     sh 'docker run --rm -v "$PWD":/usr/src/gophr -w /usr/src/gophr builder  go build -v'
   }
@@ -12,6 +12,9 @@ node {
   stage('Test') {
     try {
       sh 'docker run --rm -v "$PWD":/usr/src/gophr -w /usr/src/gophr builder sh -c "go test -v | go2xunit -fail" > testOutput.xml'
+    } catch(err) {
+      slackSend channel: '#jenkins', message: 'bla', token: "${slackToken}"
+      throw err
     }
     finally {
       junit 'testOutput.xml'
@@ -21,6 +24,5 @@ node {
   stage('Deploy') {
     if (currentBuild.result == 'SUCCESS') {
       echo 'Deployed'
-    }
   }
 }
