@@ -14,6 +14,9 @@ node {
       sh 'docker run --rm -v "$PWD":/usr/src/gophr -w /usr/src/gophr builder sh -c "go test -v | go2xunit -fail" > testOutput.xml'
     } catch(err) {
       slackSend color: 'danger', message: "Job ${env.JOB_NAME} [${env.BUILD_NUMBER}] failed (${env.BUILD_URL})"
+      withCredentials([string(credentialsId: 'mailgunKey', variable: 'MAILGUN_KEY'), string(credentialsId: 'mailgunDomain', variable: 'MAILGUN_DOMAIN'), string(credentialsId: 'mailgunFrom', variable: 'MAILGUN_FROM'), string(credentialsId: 'mailgunTo', variable: 'MAILGUN_TO')]) {
+        sh "curl -s --user \"api:$MAILGUN_KEY\" https://api.mailgun.net/v3/$MAILGUN_DOMAIN/messages -F from=\"Jenkins <$MAILGUN_FROM>\" -F to=\"$MAILGUN_TO\" -F subject=\"Job ${env.JOB_NAME} [${env.BUILD_NUMBER}] failed\" -F text=\"${env.BUILD_URL}\""
+    }
       throw err
     }
     finally {
@@ -22,8 +25,6 @@ node {
   }
 
   stage('Deploy') {
-    if (currentBuild.result == 'SUCCESS') {
-      echo 'Deployed'
-    }
+    echo "Deployed"
   }
 }
