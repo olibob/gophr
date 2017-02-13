@@ -25,6 +25,13 @@ node {
     }
   }
 
+  stage('Artifact') {
+    docker.build('gophr')
+    docker.withRegistry("https://151246526130.dkr.ecr.eu-central-1.amazonaws.com", "ecr:eu-central-1:awsID") {
+      docker.image("gophr").push("${env.BUILD_NUMBER}")
+    }
+  }
+
   stage('Deploy') {
     echo "Deployed"
   }
