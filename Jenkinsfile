@@ -2,6 +2,7 @@
 
 node {
   stage('checkout'){
+    deleteDir()
     git branch: 'dev', url: 'https://github.com/olibob/gophr.git'
   }
 
