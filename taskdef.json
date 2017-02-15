@@ -10,6 +10,6 @@
             "hostPort": 3000,
             "protocol": "tcp"
         }],
-        "essential": true,
+        "essential": true
     }]
 }
