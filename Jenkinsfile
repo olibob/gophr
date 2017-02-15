@@ -33,6 +33,6 @@ node {
   }
 
   stage('Deploy') {
-    echo "Deployed"
+    sh 'deployDev.sh'
   }
 }

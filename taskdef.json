@@ -1,0 +1,15 @@
+{
+    "family": "gophrFrontApp",
+    "containerDefinitions": [{
+        "name": "gophr",
+        "image": "%REPOSITORY_URL%:%BUILD_VERSION%",
+        "cpu": 20,
+        "memory": 256,
+        "portMappings": [{
+            "containerPort": 3000,
+            "hostPort": 3000,
+            "protocol": "tcp"
+        }],
+        "essential": true,
+    }]
+}
