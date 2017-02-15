@@ -33,6 +33,6 @@ node {
   }
 
   stage('Deploy') {
-    sh 'deployDev.sh'
+    sh 'export PATH="${PATH}:/home/jenkins/.local/bin:/home/jenkins/bin" && deployDev.sh'
   }
 }
