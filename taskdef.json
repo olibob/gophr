@@ -2,7 +2,7 @@
     "family": "gophrFrontApp",
     "containerDefinitions": [{
         "name": "gophr",
-        "image": "%REPOSITORY_URL%:%BUILD_VERSION%",
+        "image": "%REPOSITORY_URI%:%BUILD_NUMBER%",
         "cpu": 20,
         "memory": 256,
         "portMappings": [{
