@@ -11,5 +11,9 @@
             "protocol": "tcp"
         }],
         "essential": true
+    }],
+    "placementConstraints": [{
+        "expression": "attribute:env-type == dev",
+        "type": "memberOf"
     }]
 }
