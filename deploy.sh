@@ -35,7 +35,7 @@ aws ecs register-task-definition --family ${FAMILY} --cli-input-json file://${WO
 SERVICES=`aws ecs describe-services --services ${SERVICE_NAME} --cluster ${CLUSTER} --region ${REGION} | jq .failures[]`
 
 #Get latest revision if a revision is not explicitly requested (mainly for not dev deployments)
-if [ "${REVISION}" == "" ]; then
+if [ ${REVISION} == "" ]; then
   REVISION=`aws ecs describe-task-definition --task-definition ${FAMILY} --region ${REGION} | jq .taskDefinition.revision`
 fi
 
