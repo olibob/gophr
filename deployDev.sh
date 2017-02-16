@@ -6,7 +6,7 @@ REPOSITORY_NAME="gophr"
 CLUSTER="apcluster"
 FAMILY=`sed -n 's/.*"family": "\(.*\)",/\1/p' taskdef.json`
 NAME=`sed -n 's/.*"name": "\(.*\)",/\1/p' taskdef.json`
-SERVICE_NAME="${NAME}-service"
+SERVICE_NAME="${NAME}-srv"
 
 #Store the repositoryUri as a variable
 REPOSITORY_URI=`aws ecr describe-repositories --repository-names ${REPOSITORY_NAME} --region ${REGION} | jq .repositories[].repositoryUri | tr -d '"'`
