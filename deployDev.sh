@@ -25,7 +25,7 @@ if [ "$SERVICES" == "" ]; then
   DESIRED_COUNT=`aws ecs describe-services --services ${SERVICE_NAME} --cluster ${CLUSTER} --region ${REGION} | jq .services[].desiredCount`
     aws ecs update-service --cluster ${CLUSTER} --region ${REGION} --service ${SERVICE_NAME} --task-definition ${FAMILY}:${REVISION} --desired-count ${DESIRED_COUNT}
     CURRENT_TASK=`aws ecs list-tasks --family ${FAMILY} --cluster ${CLUSTER} | jq '.taskArns[0]'`
-    aws ecs stop-task --task ${CURRENT_TASK}
+    aws ecs stop-task --task ${CURRENT_TASK} --cluster ${CLUSTER}
 else
   echo "entered new service"
     aws ecs create-service --service-name ${SERVICE_NAME} --desired-count 1 --task-definition ${FAMILY} --cluster ${CLUSTER} --region ${REGION}
