@@ -6,7 +6,7 @@ REPOSITORY_NAME="gophr"
 CLUSTER="apcluster"
 FAMILY=`sed -n 's/.*"family": "\(.*\)",/\1/p' taskdef.json`
 NAME=`sed -n 's/.*"name": "\(.*\)",/\1/p' taskdef.json`
-SERVICE_NAME="${NAME}-service-${ENV-TYPE}"
+SERVICE_NAME="${NAME}-service-${ENV_TYPE}"
 
 # Attention!!!
 # The ENV_TYPE variable needs to be defined prior to running this script
