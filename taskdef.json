@@ -13,7 +13,7 @@
         "essential": true
     }],
     "placementConstraints": [{
-        "expression": "attribute:env-type == dev",
+        "expression": "attribute:env-type == %ENV_TYPE%",
         "type": "memberOf"
     }]
 }
