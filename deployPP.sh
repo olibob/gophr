@@ -4,8 +4,8 @@
 REGION="eu-central-1"
 REPOSITORY_NAME="gophr"
 CLUSTER="apcluster"
-FAMILY=`sed -n 's/.*"family": "\(.*\)",/\1/p' taskdef.json`
-NAME=`sed -n 's/.*"name": "\(.*\)",/\1/p' taskdef.json`
+FAMILY=`sed -n 's/.*"family": "\(.*\)",/\1/p' taskdefPP.json`
+NAME=`sed -n 's/.*"name": "\(.*\)",/\1/p' taskdefPP.json`
 SERVICE_NAME="${NAME}-srv-pp"
 
 #Store the repositoryUri as a variable
