@@ -1,0 +1,28 @@
+{
+  "family": "gophrFrontAppPP",
+  "placementConstraints": [
+    {
+      "expression": "attribute:env-type == preprod",
+      "type": "memberOf"
+    }
+  ],
+  "containerDefinitions": [
+    {
+      "environment": [],
+      "name": "gophr",
+      "mountPoints": [],
+      "image": "%REPOSITORY_URI%:%TAG%",
+      "cpu": 20,
+      "portMappings": [
+        {
+          "protocol": "tcp",
+          "containerPort": 3000,
+          "hostPort": 3000
+        }
+      ],
+      "memory": 256,
+      "essential": true,
+      "volumesFrom": []
+    }
+  ]
+}
